@@ -1,0 +1,28 @@
+tasks:
+  default:
+    onboard_world: MessengerBotChatOnboardWorld
+    task_world: InteractiveWorld
+    timeout: 18000000
+    agents_required: 0
+task_name: chatbot
+world_module: parlai.tasks.blended_skill_talk.worlds
+overworld: MessengerOverworld
+max_workers: 3000
+opt:
+  debug: True
+  models:
+    blender_90M:
+      model: transformer/generator
+      model_file: zoo:blender/blender_90M/model
+      interactive_mode: True
+      no_cuda: True
+  include_personas: False
+  safety: None
+  model: transformer/generator
+  model_file: zoo:blender/blender_90M/model
+  interactive_mode: True
+  no_cuda: True
+  datatype: valid
+  display_partner_persona: True
+additional_args:
+  page_id: 1 # Configure Your Own Page
