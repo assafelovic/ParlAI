@@ -24,6 +24,7 @@ build/
 data/
 data
 logs/
+logs
 develop-eggs/
 dist/
 downloads/
