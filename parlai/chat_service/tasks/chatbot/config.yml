@@ -2,7 +2,7 @@ tasks:
   default:
     onboard_world: MessengerBotChatOnboardWorld
     task_world: MessengerBotChatTaskWorld
-    timeout: 1800
+    timeout: 18000000
     agents_required: 1
 task_name: chatbot
 world_module: parlai.chat_service.tasks.chatbot.worlds

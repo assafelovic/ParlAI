@@ -60,9 +60,8 @@ class MessengerBotChatTaskWorld(World):
             self.agent.observe(
                 {
                     'id': 'World',
-                    'text': 'Welcome to the ParlAI Chatbot demo. '
-                    'You are now paired with a bot - feel free to send a message.'
-                    'Type [DONE] to finish the chat, or [RESET] to reset the dialogue history.',
+                    'text': "Great, it's nice to meet you!\n"
+                    'You can type [DONE] to finish the chat, or [RESET] to reset the dialogue history.',
                 }
             )
             self.first_time = False
@@ -73,16 +72,17 @@ class MessengerBotChatTaskWorld(World):
             elif '[RESET]' in a['text']:
                 self.model.reset()
                 self.agent.observe({"text": "[History Cleared]", "episode_done": False})
-            else:
-                print("===act====")
-                print(a)
-                print("~~~~~~~~~~~")
-                self.model.observe(a)
-                response = self.model.act()
-                print("===response====")
-                print(response)
-                print("~~~~~~~~~~~")
-                self.agent.observe(response)
+            if a['text'].startswith('your persona:'):
+                a['id'] = 'context'
+            print("===act====")
+            print(a)
+            print("~~~~~~~~~~~")
+            self.model.observe(a)
+            response = self.model.act()
+            print("===response====")
+            print(response)
+            print("~~~~~~~~~~~")
+            self.agent.observe(response)
 
     def episode_done(self):
         return self.episodeDone
@@ -120,8 +120,8 @@ class MessengerOverworld(World):
             self.agent.observe(
                 {
                     'id': 'Overworld',
-                    'text': 'Welcome to the overworld for the ParlAI messenger '
-                    'chatbot demo. Please type "begin" to start.',
+                    'text': "Hi! "
+                    'Please type "begin" to start.',
                     'quick_replies': ['begin'],
                 }
             )
